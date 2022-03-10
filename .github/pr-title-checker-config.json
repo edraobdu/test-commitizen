@@ -1,0 +1,15 @@
+{
+  "LABEL": {
+    "name": "Title Needs Formatting",
+    "color": "EEEEEE"
+  },
+  "CHECKS": {
+    "regexp": "(build|ci|docs|feat|fix|perf|refactor|style|test|chore|revert|bump)\\(v[0-9]\\): ",
+    "regexpFlags": "i"
+  },
+  "MESSAGES": {
+    "success": "All OK",
+    "failure": "Failing CI test",
+    "notice": ""
+  }
+}
