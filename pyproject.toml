@@ -1,12 +1,12 @@
 [tool.poetry]
 name = "test-commitizen"
-version = "0.1.3"
+version = "0.2.0"
 description = "Test commitizen App"
 authors = ["KiWi Dev Team <hola@conkiwi.com>"]
 
 [tool.commitizen]
 name = "cz_conventional_commits"
-version = "0.1.3"
+version = "0.2.0"
 version_files = [
     "pyproject.toml:version",
     "__version__.py"
