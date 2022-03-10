@@ -9,12 +9,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Check Out master
         uses: actions/checkout@v2
         with:
           ref: master
           fetch-depth: 0  # Fetch all history for all tags and branches
+          token: "${{ secrets.GITHUB_TOKEN }}"
 
       - run: git merge origin/develop
 
@@ -46,6 +46,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
+          token: "${{ secrets.GITHUB_TOKEN }}"
 
       # Still in master, push to force deploy or any action that
       # gets triggered when pushing to master branch.
@@ -58,6 +59,7 @@ jobs:
         with:
           ref: develop
           fetch-depth: 0  # Fetch all history for all tags and branches
+          token: "${{ secrets.GITHUB_TOKEN }}"
 
       # Should be fast-forward
       - run: git merge origin/master
