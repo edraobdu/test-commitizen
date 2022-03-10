@@ -62,5 +62,6 @@ jobs:
           token: "${{ secrets.GITHUB_TOKEN }}"
 
       # Should be fast-forward
-      - run: git merge origin/master
-
+      - run: | 
+        git merge origin/master
+        git push
