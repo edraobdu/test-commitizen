@@ -1,16 +1,7 @@
-name: Merge from/to
+name: Release
 
 on:
   workflow_dispatch:
-    inputs:
-      branchFrom:
-        description: 'Source branch'
-        required: true
-        default: 'origin/develop'
-      branchTo:
-        description: 'Destination branch'
-        required: true
-        default: 'master'
 
 jobs:
   merge:
@@ -19,15 +10,13 @@ jobs:
 
     steps:
 
-      - name: Check Out ${{ github.event.inputs.branchTo }}
+      - name: Check Out master
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.inputs.branchTo }}
+          ref: master
           fetch-depth: 0  # Fetch all history for all tags and branches
 
-      - run: |
-          git merge ${{ github.event.inputs.branchFrom }}
-          git push
+      - run: git merge develop
 
   bump_version:
     needs: merge
@@ -46,4 +35,23 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Print Version
-        run: echo "Bumped to version ${{ steps.cz.outputs.version }}"
+        run: echo "Bumped to version ${{ steps.cz.outputs.version }}"      
+
+  trigger_deploy:
+    needs: bump_version
+    steps:
+      # Still in master, push to force deploy or any action that
+      # gets triggered when pushing to master branch.
+      - run: git push
+
+      # As now master is one commit ahead of develop, we need to merge back
+      # master to develop in order to keep a linear history
+      - name: Check Out master
+        uses: actions/checkout@v2
+        with:
+          ref: develop
+          fetch-depth: 0  # Fetch all history for all tags and branches
+
+      # Should be fast-forward
+      - run: git merge master
+
