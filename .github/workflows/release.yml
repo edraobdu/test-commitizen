@@ -63,5 +63,5 @@ jobs:
 
       # Should be fast-forward
       - run: | 
-        git merge origin/master
-        git push
+          git merge origin/master
+          git push
