@@ -16,7 +16,7 @@ jobs:
           ref: master
           fetch-depth: 0  # Fetch all history for all tags and branches
 
-      - run: git merge develop
+      - run: git merge origin/develop
 
   bump_version:
     needs: merge
@@ -55,5 +55,5 @@ jobs:
           fetch-depth: 0  # Fetch all history for all tags and branches
 
       # Should be fast-forward
-      - run: git merge master
+      - run: git merge origin/master
 
