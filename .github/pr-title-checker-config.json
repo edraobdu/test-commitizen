@@ -4,7 +4,7 @@
     "color": "EEEEEE"
   },
   "CHECKS": {
-    "regexp": "(build|ci|docs|feat|fix|perf|refactor|style|test|chore|revert|bump)\\(v[0-9]\\): ",
+    "regexp": "(build|ci|docs|feat|fix|perf|refactor|style|test|chore|revert|bump)\\([a-z0-9]+\\): ",
     "regexpFlags": "i"
   },
   "MESSAGES": {
