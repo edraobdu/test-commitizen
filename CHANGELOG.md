@@ -1,3 +1,9 @@
+## 0.3.0 (2022-03-10)
+
+### Feat
+
+- **handlers**: add a new MIT handler (#22)
+
 ## 0.2.1 (2022-03-10)
 
 ### Fix
