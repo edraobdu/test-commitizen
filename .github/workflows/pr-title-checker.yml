@@ -10,7 +10,7 @@ on:
 
 jobs:
   check:
-    name: "Check PR Title pattern"
+    name: Check PR Title pattern
     runs-on: ubuntu-latest
     steps:
       - uses: thehanimo/pr-title-checker@v1.3.4

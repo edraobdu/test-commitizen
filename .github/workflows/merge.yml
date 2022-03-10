@@ -1,0 +1,30 @@
+name: Merge from/to
+
+on:
+  workflow_dispatch:
+    inputs:
+      branchFrom:
+        description: 'Source branch'
+        required: true
+        default: 'origin/develop'
+      branchTo:
+        description: 'Destination branch'
+        required: true
+        default: 'master'
+
+jobs:
+  build:
+    name: Trigger Bump Version
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Check Out ${{ github.event.inputs.branchTo }}
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.inputs.branchTo }}
+          fetch-depth: 0  # Fetch all history for all tags and branches
+
+      - run: |
+          git merge ${{ github.event.inputs.branchFrom }}
+          git push
